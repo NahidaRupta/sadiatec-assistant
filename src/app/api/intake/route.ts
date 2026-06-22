@@ -13,22 +13,30 @@ export async function POST(req: Request) {
   if (!parsed.success) {
     return NextResponse.json({ error: 'invalid', issues: parsed.error.flatten() }, { status: 400 })
   }
-
   const { target, data } = parsed.data
+
   // Silently accept-and-drop obvious bots (honeypot filled).
   if ((data as Record<string, unknown>).honeypot) return NextResponse.json({ ok: true })
   delete (data as Record<string, unknown>).honeypot
+
   const { sessionId, ...record } = data as Record<string, unknown>
-
   const payload = await getPayload({ config })
-  const collection = target === 'lead' ? 'leads' : 'business-inquiries'
 
-  let doc
+ let doc
   try {
-    doc = await payload.create({
-      collection,
-      data: { ...record, source: (record.source as string) ?? 'website_widget' },
-    })
+    if (target === 'lead') {
+      doc = await payload.create({
+        collection: 'leads',
+        data: { ...record, source: (record.source as string) ?? 'website_widget' } as never,
+        draft: false,
+      })
+    } else {
+      doc = await payload.create({
+        collection: 'business-inquiries',
+        data: { ...record, source: (record.source as string) ?? 'website_widget' } as never,
+        draft: false,
+      })
+    }
   } catch (err) {
     console.error('[intake] create failed', err)
     return NextResponse.json({ error: 'create_failed' }, { status: 500 })

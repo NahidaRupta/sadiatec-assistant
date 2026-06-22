@@ -26,6 +26,9 @@ export default buildConfig({
   },
   collections: [Users, Leads, BusinessInquiries, ChatSessions, FAQs],
   globals: [WidgetSettings],
+  cors: [
+    'http://localhost:3000', // HR site, local dev
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

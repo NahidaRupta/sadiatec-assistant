@@ -1,0 +1,34 @@
+import { createRoot } from 'react-dom/client'
+import { ChatWidget, type ChatWidgetProps } from '@/components/chat/ChatWidget'
+import './widget.css'
+
+const ROOT_ID = 'sadiatec-assistant-root'
+
+function readConfigFromScriptTag(): ChatWidgetProps {
+  const script = document.currentScript as HTMLScriptElement | null
+  return {
+    locale: (script?.dataset.locale as ChatWidgetProps['locale']) || undefined,
+    whatsappNumber: script?.dataset.whatsapp || undefined,
+    lineUrl: script?.dataset.line || undefined,
+    primaryColor: script?.dataset.color || undefined,
+    openDelayMs: script?.dataset.openDelay ? Number(script.dataset.openDelay) : undefined,
+  }
+}
+
+function mount() {
+  if (document.getElementById(ROOT_ID)) return // avoid double-mount
+
+  const container = document.createElement('div')
+  container.id = ROOT_ID
+  document.body.appendChild(container)
+
+  const props = readConfigFromScriptTag()
+  const root = createRoot(container)
+  root.render(<ChatWidget {...props} />)
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', mount)
+} else {
+  mount()
+}

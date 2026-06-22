@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#sadiatec-assistant-root {
+  --sad-accent: #4f46e5;
+  --sad-primary: #1f2937;
+  --sad-light: #f3f4f6;
+  --sad-dark-bg: #0f172a;
+  --sad-dark-surface: #1e293b;
+}
+
+#sadiatec-assistant-root a {
+  @apply text-[var(--sad-accent)] transition-colors hover:opacity-80;
+}
+
+#sadiatec-assistant-root ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+#sadiatec-assistant-root ::-webkit-scrollbar-track {
+  @apply bg-zinc-100;
+}
+
+#sadiatec-assistant-root ::-webkit-scrollbar-thumb {
+  @apply bg-zinc-300 rounded-full;
+}
+
+#sadiatec-assistant-root ::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-400;
+}
+
+#sadiatec-assistant-root button:focus-visible,
+#sadiatec-assistant-root a:focus-visible,
+#sadiatec-assistant-root input:focus-visible {
+  @apply outline-none ring-2 ring-[var(--sad-accent)] ring-offset-2;
+}
+
+:where(#sadiatec-assistant-root) :where(button) {
+  cursor: pointer;
+  border-width: 0;
+  border-style: solid;
+  background-color: transparent;
+  appearance: none;
+  font: inherit;
+}
+
+:where(#sadiatec-assistant-root) :where(input),
+:where(#sadiatec-assistant-root) :where(textarea) {
+  appearance: none;
+  font: inherit;
+}

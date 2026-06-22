@@ -28,6 +28,7 @@ export default buildConfig({
   globals: [WidgetSettings],
   cors: [
     'http://localhost:3000', // HR site, local dev
+    'https://sadiatec-saidatech-qffo.vercel.app',
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

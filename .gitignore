@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/.coverage
+coverage/
+
+# Production
+/build
+/.next/
+/out/
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Payload CMS
+/media
+payload-types.ts
+
+# Misc
+*.pem
+.cache/
+.turbo
+turbo.json
+
+# Generated types
+.next/types/
+
+# OS
+.DS_Store
+Thumbs.db

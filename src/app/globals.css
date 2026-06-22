@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* CSS Custom Properties for theming */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --sad-accent: #4f46e5;
+  --sad-primary: #1f2937;
+  --sad-light: #f3f4f6;
+  --sad-dark-bg: #0f172a;
+  --sad-dark-surface: #1e293b;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Base typography & links */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+a {
+  @apply text-[var(--sad-accent)] transition-colors hover:opacity-80;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Scrollbar styling (optional but makes the UI feel more polished) */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-zinc-100 dark:bg-zinc-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-300 dark:bg-zinc-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-400 dark:bg-zinc-600;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Reduced motion support (accessibility) */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* Focus states for keyboard navigation */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  @apply outline-none ring-2 ring-[var(--sad-accent)] ring-offset-2;
+}
+
+html.dark button:focus-visible,
+html.dark a:focus-visible,
+html.dark input:focus-visible {
+  @apply ring-offset-zinc-950;
+}

@@ -16,7 +16,13 @@ function readConfigFromScriptTag(): ChatWidgetProps {
 }
 
 function mount() {
-  if (document.getElementById(ROOT_ID)) return // avoid double-mount
+  if (document.getElementById(ROOT_ID)) return
+
+  // Set the API base BEFORE the component tree renders, so every fetch call resolves correctly.
+  const script = document.currentScript as HTMLScriptElement | null
+  const scriptSrc = script?.src || ''
+  const apiBase = scriptSrc ? new URL(scriptSrc).origin : ''
+  ;(window as unknown as { __SADIATEC_API_BASE__?: string }).__SADIATEC_API_BASE__ = apiBase
 
   const container = document.createElement('div')
   container.id = ROOT_ID

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { advance, getInteraction, start } from '@/lib/chat-engine/engine'
 import type { EngineState, Interaction, Locale } from '@/lib/chat-engine/types'
 import { mainFlow } from '@/lib/chat-flows'
-import { track } from '@/lib/utils'
+import { apiUrl, track } from '@/lib/utils'
 import { useChatSession } from './useChatSession'
 
 const delay = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
@@ -103,7 +103,7 @@ export function useFlowEngine(locale: Locale) {
       if (!createdRef.current && s.data.phone) {
         createdRef.current = true // optimistic, prevents a double-create race
         try {
-          const res = await fetch('/api/intake', {
+          const res = await fetch(apiUrl('/api/intake'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ target: s.target, data: { ...data, sessionId } }),
@@ -120,7 +120,7 @@ export function useFlowEngine(locale: Locale) {
         }
       } else if (createdRef.current && recordIdRef.current) {
         try {
-          await fetch(`/api/intake/${recordIdRef.current}`, {
+          await fetch(apiUrl(`/api/intake/${recordIdRef.current}`), {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ target: s.target, data }),
@@ -136,7 +136,7 @@ export function useFlowEngine(locale: Locale) {
   const flagCallback = useCallback(async (s: EngineState) => {
     if (!recordIdRef.current) return
     try {
-      await fetch(`/api/intake/${recordIdRef.current}`, {
+      await fetch(apiUrl(`/api/intake/${recordIdRef.current}`), {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ target: s.target, data: { wantsCallback: true } }),

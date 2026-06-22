@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { uuid } from '@/lib/utils'
+import { uuid, apiUrl } from '@/lib/utils'
 
 const KEY = 'sadiatec_session_id'
 
@@ -23,7 +23,7 @@ export function useChatSession() {
 
   const report = async (payload: Record<string, unknown>): Promise<void> => {
     try {
-      await fetch('/api/chat-event', {
+      await fetch(apiUrl('/api/chat-event'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

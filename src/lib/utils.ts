@@ -24,3 +24,14 @@ export function track(event: string, props?: Record<string, unknown>): void {
   else if (typeof w.gtag === 'function') w.gtag('event', event, props)
   if (process.env.NODE_ENV !== 'production') console.debug('[track]', event, props ?? {})
 }
+
+/**
+ * Resolves an API path to an absolute URL when running as the embedded
+ * widget on a foreign origin (e.g. the HR site), and to a relative path
+ * otherwise (normal in-app usage on this Next.js app itself).
+ */
+export function apiUrl(path: string): string {
+  if (typeof window === 'undefined') return path // SSR — never actually used client-side
+  const base = (window as unknown as { __SADIATEC_API_BASE__?: string }).__SADIATEC_API_BASE__
+  return base ? `${base}${path}` : path
+}

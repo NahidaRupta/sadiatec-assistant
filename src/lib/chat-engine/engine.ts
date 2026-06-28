@@ -60,6 +60,9 @@ function runForward(
     if (!node) break
     state.history.push(node.id)
 
+    const suppressPrompt = state.suppressNextPrompt
+    state.suppressNextPrompt = false   // NEW — consume it immediately
+
     switch (node.type) {
       case 'message':
         messages.push({ id: mid(), role: 'bot', text: t(node.textKey, locale), nodeId: node.id })
@@ -69,6 +72,7 @@ function runForward(
       case 'faq':
         messages.push({ id: mid(), role: 'bot', text: t(node.answerKey, locale), nodeId: node.id })
         state.currentNodeId = node.backTo
+        state.suppressNextPrompt = true   // NEW — don't replay the menu prompt next loop
         break
 
       case 'handoff':
@@ -84,8 +88,10 @@ function runForward(
         break
 
       case 'choice':
-        messages.push({ id: mid(), role: 'bot', text: t(node.promptKey, locale), nodeId: node.id })
-        return { state, messages } // wait for the user
+        if (!suppressPrompt) {                              // NEW — guard the push
+          messages.push({ id: mid(), role: 'bot', text: t(node.promptKey, locale), nodeId: node.id })
+        }
+        return { state, messages }
 
       case 'input':
         messages.push({ id: mid(), role: 'bot', text: t(node.promptKey, locale), nodeId: node.id })

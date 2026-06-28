@@ -155,4 +155,5 @@ export interface EngineState {
   status: 'active' | 'done'
   error: string | null
   effects: SideEffect[]
+  suppressNextPrompt?: boolean
 }

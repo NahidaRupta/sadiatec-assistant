@@ -7,7 +7,7 @@ import { cn, track } from '@/lib/utils'
 import { ChatPanel } from './ChatPanel'
 
 export interface ChatWidgetProps {
-  /** Initial language. Falls back to the browser locale, then English. */
+  /** Initial language. Falls back to the browser locale, then Japanese. */
   locale?: Locale
   /** WhatsApp number in international format without "+", e.g. 8801XXXXXXXXX. */
   whatsappNumber?: string
@@ -33,7 +33,7 @@ export function ChatWidget({
   const [unread, setUnread] = useState(false)
   const everOpened = useRef(false)
 
-  const initialLocale: Locale = locale ?? (typeof window !== 'undefined' ? detectLocale() : 'en')
+  const initialLocale: Locale = locale ?? (typeof window !== 'undefined' ? detectLocale() : 'ja')
   const whatsappUrl = whatsappNumber ? `https://wa.me/${whatsappNumber}` : undefined
 
   // Mount/animate the panel.

@@ -29,13 +29,18 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
     return NextResponse.json({ error: 'update_failed' }, { status: 500 })
   }
 
-  if (data.wantsCallback === true) {
-    await notifyStaff({
-      kind: 'callback',
-      title: '📞 Callback requested',
-      lines: [`Record: ${id}`, `Phone: ${(doc as { phone?: string }).phone ?? '—'}`],
-    })
-  }
+ if (data.wantsCallback === true) {
+  await notifyStaff({
+    kind: 'callback',
+    title: '📞 New lead — details saved',
+    lines: [`Record: ${id}`, `Phone: ${(doc as { phone?: string }).phone ?? '—'}`],
+    whatsapp: {
+      name: (doc as { name?: string; contactName?: string }).name ?? (doc as { contactName?: string }).contactName,
+      phone: (doc as { phone?: string }).phone,
+      type: (doc as { inquiryType?: string }).inquiryType ?? target,
+    },
+  })
+}
 
   return NextResponse.json({ ok: true, id: doc.id })
 }

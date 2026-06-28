@@ -36,7 +36,7 @@ const en: Dict = {
   'system.invalid.email': 'Enter a valid email address.',
 
   // ── welcome + routing ───────────────────────────────────────────────────────
-  welcome: 'Assalamu Alaikum / Hello, welcome 👋',
+  welcome: 'Hello 👋',
   'route.prompt': 'How can we help you today?',
   'route.study': 'Study in Japan',
   'route.work': 'Work in Japan',
@@ -73,7 +73,7 @@ const en: Dict = {
 
   // ── candidate: advisor offer ────────────────────────────────────────────────
   'cand.offer.prompt': 'Would you like a free advisor to guide you on this?',
-  'opt.yesAdvisor': 'Yes, please',
+  'opt.yesAdvisor': 'Connect with advisor',
   'opt.haveQuestion': 'I have a question first',
 
   // ── FAQ ─────────────────────────────────────────────────────────────────────
@@ -127,7 +127,7 @@ const en: Dict = {
   'opt.time.anytime': 'Anytime',
 
   'cand.handoff':
-    'Perfect — our team has your details and will reach out soon. Prefer to talk now? Use the buttons below.',
+    'Perfect — our team has your details and will reach out soon.',
   'cand.end': 'Thank you! 🌸 An advisor will contact you, usually within one business day.',
 
   // ── B2B ─────────────────────────────────────────────────────────────────────
@@ -175,8 +175,8 @@ const bn: Dict = {
   'system.invalid.phone': 'সঠিক ফোন নম্বর দিন, যেমন +8801…',
   'system.invalid.email': 'সঠিক ইমেইল ঠিকানা দিন।',
 
-  welcome: 'আসসালামু আলাইকুম / হ্যালো, স্বাগতম 👋',
-  'route.prompt': 'আজ আমরা কীভাবে সাহায্য করতে পারি?',
+  welcome: 'হ্যালো 👋',
+  'route.prompt': 'আমরা আপনাকে কীভাবে সাহায্য করতে পারি?',
   'route.study': 'জাপানে পড়াশোনা',
   'route.work': 'জাপানে কাজ',
   'route.advisor': 'উপদেষ্টার সাথে কথা বলুন',
@@ -192,7 +192,7 @@ const bn: Dict = {
   'cand.triage.prompt': 'সমস্যা নেই — আপনার মূল লক্ষ্য কী?',
 
   'cand.offer.prompt': 'আপনি কি চান একজন উপদেষ্টা বিনামূল্যে গাইড করুক?',
-  'opt.yesAdvisor': 'হ্যাঁ, অবশ্যই',
+  'opt.yesAdvisor': 'উপদেষ্টার পরামর্শ নিন',
   'opt.haveQuestion': 'আগে একটি প্রশ্ন আছে',
 
   'cand.capture.intro': 'দারুণ — চলুন একজন উপদেষ্টার সাথে যুক্ত করি। মাত্র কয়েকটি তথ্য।',
@@ -210,7 +210,7 @@ const bn: Dict = {
   'opt.time.anytime': 'যেকোনো সময়',
 
   'cand.handoff':
-    'দারুণ — আমাদের টিম আপনার তথ্য পেয়েছে এবং শীঘ্রই যোগাযোগ করবে। এখনই কথা বলতে চান? নিচের বোতাম ব্যবহার করুন।',
+    'দারুণ — আমাদের টিম আপনার তথ্য পেয়েছে এবং শীঘ্রই যোগাযোগ করবে।',
   'cand.end': 'ধন্যবাদ! 🌸 একজন উপদেষ্টা সাধারণত এক কর্মদিবসের মধ্যে যোগাযোগ করবেন।',
 
   'b2b.start.prompt': 'আপনার ব্যবসায় কীভাবে সাহায্য করতে পারি?',
@@ -221,6 +221,68 @@ const bn: Dict = {
   'q.company': 'কোম্পানির নাম?',
   'q.contactName': 'আপনার নাম?',
   'b2b.end': 'পেয়েছি — ধন্যবাদ। আমাদের টিমের একজন শীঘ্রই যোগাযোগ করবেন।',
+
+  'opt.ssw': 'SSW (নির্দিষ্ট দক্ষ কর্মী)',
+'opt.titp': 'TITP (টেকনিক্যাল ইন্টার্ন)',
+
+'cand.path.lang.intro':
+  'জাপানিজ ভাষা স্কুল সবচেয়ে সাধারণ প্রথম পদক্ষেপ — এটি আপনার জাপানি ভাষার দক্ষতা বাড়ায় এবং স্টুডেন্ট ভিসা দেয়। বেশিরভাগ শিক্ষার্থী N5–N4 লেভেল থেকে শুরু করে।',
+'cand.path.bekka.intro':
+  'বেক্কা এবং আন্ডারগ্র্যাজুয়েট রুট জাপানি বিশ্ববিদ্যালয়ে নিয়ে যায়। সাধারণত JLPT N2 (বা ভালো N3) এবং ভালো একাডেমিক রেকর্ড প্রয়োজন।',
+'cand.path.scholarship.intro':
+  'কিছু বৃত্তি (যেমন MEXT) টিউশন ও জীবনযাত্রার খরচ কভার করে, তবে প্রতিযোগিতামূলক এবং কঠিন সময়সীমা থাকে। আপনি কোনগুলোর জন্য যোগ্য হতে পারেন তা আমরা যাচাই করতে পারি।',
+'cand.path.ssw.intro':
+  'SSW আপনাকে নির্দিষ্ট শিল্পে জাপানে কাজ করার সুযোগ দেয়। এর জন্য স্কিল টেস্ট এবং JLPT N4 (বা JFT-Basic) লাগবে। এটি দীর্ঘমেয়াদী থাকার দিকে নিয়ে যেতে পারে।',
+'cand.path.titp.intro':
+  'TITP একটি টেকনিক্যাল ইন্টার্ন প্রোগ্রাম — জাপানে কাজের অভিজ্ঞতা অর্জনের একটি সুসংগঠিত উপায়। শর্তগুলো তুলনামূলক সহজ, এবং আমরা প্রতিটি পদক্ষেপে গাইড করি।',
+
+'faq.menu.prompt': 'অবশ্যই — আপনি কী জানতে চান?',
+'faq.opt.money': 'কত টাকা লাগবে?',
+'faq.opt.language': 'জাপানি ভাষা জানা প্রয়োজন?',
+'faq.opt.visa': 'ভিসা পেতে কতদিন লাগে?',
+'faq.opt.work': 'পড়াশোনার সময় কাজ করতে পারব?',
+'faq.opt.accom': 'আবাসনের ব্যাপারে সাহায্য করেন?',
+'faq.opt.services': 'আপনারা কী কী সেবা দেন?',
+'faq.money':
+  'এটা আপনার পথ এবং শহরের উপর নির্ভর করে, তবে ভাষা স্কুলের শিক্ষার্থীদের প্রথম বছরের টিউশন, জীবনযাত্রার খরচ এবং তহবিলের প্রমাণের জন্য পরিকল্পনা করা উচিত। একজন উপদেষ্টা আপনার পরিস্থিতির জন্য বাস্তবসম্মত পরিমাণ জানাতে পারবেন।',
+'faq.language':
+  'ভাষা স্কুলের জন্য আপনি সামান্য বা কোনো জাপানি ভাষা না জেনেও শুরু করতে পারেন। বিশ্ববিদ্যালয় এবং বেশিরভাগ কাজের রুটে JLPT N4–N2 প্রয়োজন। সঠিক লেভেল পরিকল্পনায় আমরা সাহায্য করব।',
+'faq.visa':
+  'প্রসেসিং সময় রুট ও সিজনের উপর নির্ভর করে — সাধারণত নথি প্রস্তুত হওয়ার পর কয়েক মাস লাগে। আগে থেকে শুরু করলে সবসময় সুবিধা হয়।',
+'faq.work':
+  'স্টুডেন্ট ভিসাধারীরা সাধারণত অনুমতি নিয়ে সীমিত পার্ট-টাইম কাজ করতে পারেন। নিয়ম পরিবর্তন হতে পারে, তাই একজন উপদেষ্টা আপনার ক্ষেত্রে কী প্রযোজ্য তা নিশ্চিত করবেন।',
+'faq.accom':
+  'অনেক স্কুল ডরমিটরি দেয় বা আবাসন ব্যবস্থা করতে সাহায্য করে, এবং আমরা আপনার স্কুলের কাছাকাছি বিকল্পগুলো নিয়ে গাইড করতে পারি।',
+'faq.services':
+  'আমরা ভর্তি, কাগজপত্র প্রস্তুতি, স্কুল ম্যাচিং, ভিসা গাইডেন্স এবং যাত্রার আগের সহায়তা প্রদান করি — এবং সঠিক উপদেষ্টার সাথে সংযুক্ত করি।',
+
+'opt.edu.below_hsc': 'HSC এর নিচে',
+'opt.edu.hsc': 'HSC / A-Level',
+'opt.edu.diploma': 'ডিপ্লোমা',
+'opt.edu.bachelor': 'স্নাতক',
+'opt.edu.master': 'স্নাতকোত্তর',
+'opt.edu.other': 'অন্যান্য',
+'opt.jp.n5': 'N5',
+'opt.jp.n4': 'N4',
+'opt.jp.n3': 'N3',
+'opt.jp.n2': 'N2',
+'opt.jp.n1': 'N1',
+
+'ui.poweredBy': 'Sadiatec',
+
+// ── B2B (bn was missing this whole block — ja already had it) ───────────────
+'b2b.services':
+  'আমরা জাপানের সাথে কাজ করা কোম্পানিগুলোর জন্য বহুভাষিক ওয়েবসাইট, এআই অ্যাসিস্ট্যান্ট/চ্যাটবট, লিড জেনারেশন সিস্টেম এবং বিজনেস অটোমেশন তৈরি করি। নিচে আপনার প্রয়োজন জানান।',
+'b2b.capture.intro':
+  'ধন্যবাদ। অনুগ্রহ করে কিছু তথ্য ও একটি সংক্ষিপ্ত নোট দিন — আমাদের টিম শীঘ্রই যোগাযোগ করবে।',
+'q.service': 'আপনার কী ধরনের সাহায্য প্রয়োজন?',
+'opt.svc.website': 'ওয়েবসাইট ডেভেলপমেন্ট',
+'opt.svc.chatbot_ai': 'চ্যাটবট / এআই অ্যাসিস্ট্যান্ট',
+'opt.svc.lead_gen': 'লিড জেনারেশন',
+'opt.svc.multilingual': 'বহুভাষিক ওয়েবসাইট',
+'opt.svc.automation': 'বিজনেস অটোমেশন',
+'opt.svc.consultation': 'পরামর্শ',
+'opt.svc.other': 'অন্যান্য',
 }
 
 // Japanese — high-traffic strings (long-tail falls back to English).
@@ -243,7 +305,7 @@ const ja: Dict = {
   'system.invalid.phone': '有効な電話番号を入力してください（例：+81…）。',
   'system.invalid.email': '有効なメールアドレスを入力してください。',
 
-  welcome: 'こんにちは、ようこそ 👋',
+  welcome: 'こんにちは、👋',
   'route.prompt': '本日はどのようなご用件でしょうか？',
   'route.study': '日本で学ぶ',
   'route.work': '日本で働く',
@@ -260,7 +322,7 @@ const ja: Dict = {
   'cand.triage.prompt': '承知しました。主な目的は何でしょうか？',
 
   'cand.offer.prompt': '無料でアドバイザーがご案内しましょうか？',
-  'opt.yesAdvisor': 'はい、お願いします',
+  'opt.yesAdvisor': 'アドバイザーと繋がる',
   'opt.haveQuestion': '先に質問があります',
 
   'cand.capture.intro': '承知しました。アドバイザーにおつなぎします。簡単な情報をお願いします。',
@@ -278,7 +340,7 @@ const ja: Dict = {
   'opt.time.anytime': 'いつでも',
 
   'cand.handoff':
-    '承知しました。担当者が確認し、まもなくご連絡します。今すぐご相談の場合は下のボタンをご利用ください。',
+    '承知しました。担当者が確認し、まもなくご連絡します。',
   'cand.end': 'ありがとうございます。🌸 通常1営業日以内に担当者よりご連絡します。',
 
   'b2b.start.prompt': '御社のビジネスについて、どのようにお手伝いできますか？',
@@ -301,24 +363,78 @@ const ja: Dict = {
   'opt.svc.consultation': '相談',
   'opt.svc.other': 'その他',
   'b2b.end': '承りました。ありがとうございます。担当者よりまもなくご連絡いたします。',
+
+  // ── candidate: work (missing labels) ────────────────────────────────────────
+'opt.ssw': 'SSW（特定技能）',
+'opt.titp': 'TITP（技能実習）',
+
+// ── candidate: path explainers ───────────────────────────────────────────────
+'cand.path.lang.intro':
+  '日本語学校は最も一般的な最初のステップです。日本語力を伸ばしながら留学ビザを取得できます。多くの学生はN5〜N4レベルから始めます。',
+'cand.path.bekka.intro':
+  '別科・学部進学コースは日本の大学への道です。通常JLPT N2（またはしっかりしたN3）と良好な学業成績が必要です。',
+'cand.path.scholarship.intro':
+  'MEXTなどの一部の奨学金は学費と生活費をカバーしますが、競争率が高く締切も厳しいです。ご自身が対象となる奨学金を一緒に確認しましょう。',
+'cand.path.ssw.intro':
+  'SSW（特定技能）は特定の業種で日本で働ける制度です。技能試験とJLPT N4（またはJFT-Basic）が必要で、長期滞在につながる場合もあります。',
+'cand.path.titp.intro':
+  'TITP（技能実習）は日本での実務経験を積むための制度です。条件は比較的緩やかで、各ステップを丁寧にサポートします。',
+
+// ── FAQ ───────────────────────────────────────────────────────────────────────
+'faq.menu.prompt': 'もちろんです — 何について知りたいですか？',
+'faq.opt.money': '費用はどのくらいかかりますか？',
+'faq.opt.language': '日本語は必要ですか？',
+'faq.opt.visa': 'ビザの取得にどれくらいかかりますか？',
+'faq.opt.work': '留学中に働けますか？',
+'faq.opt.accom': '住居のサポートはありますか？',
+'faq.opt.services': 'どのようなサービスを提供していますか？',
+'faq.money':
+  'ルートや都市によって異なりますが、日本語学校の学生は初年度の学費・生活費・資金証明を見込んでおく必要があります。アドバイザーが具体的な金額をご案内します。',
+'faq.language':
+  '日本語学校なら日本語力がほとんどなくても始められます。大学進学や多くの就労ルートではJLPT N4〜N2が必要です。適切なレベルを一緒に計画しましょう。',
+'faq.visa':
+  '処理期間はルートや時期によって異なりますが、書類が揃ってから数か月程度が一般的です。早めに準備を始めることが大切です。',
+'faq.work':
+  '学生ビザでは許可を得れば限定的なアルバイトが可能です。規則は変わることがあるため、アドバイザーが最新情報を確認します。',
+'faq.accom':
+  '多くの学校が学生寮を提供したり、住居探しをサポートしています。学校近くの選択肢についてもご案内できます。',
+'faq.services':
+  '入学手続き、書類準備、学校選び、ビザサポート、渡航前サポートまで対応し、最適なアドバイザーにおつなぎします。',
+
+// ── shared capture: education / JLPT options ─────────────────────────────────
+'opt.edu.below_hsc': 'HSC未満',
+'opt.edu.hsc': 'HSC／高校卒',
+'opt.edu.diploma': 'ディプロマ',
+'opt.edu.bachelor': '学士',
+'opt.edu.master': '修士',
+'opt.edu.other': 'その他',
+'opt.jp.n5': 'N5',
+'opt.jp.n4': 'N4',
+'opt.jp.n3': 'N3',
+'opt.jp.n2': 'N2',
+'opt.jp.n1': 'N1',
+
+// ── footer ─────────────────────────────────────────────────────────────────────
+'ui.poweredBy': 'Sadiatec',
 }
 
 const dicts: Record<Locale, Dict> = { en, bn, ja }
 
-export function t(key: string, locale: Locale = 'en'): string {
+export function t(key: string, locale: Locale = 'ja'): string {  // was 'en'
   return dicts[locale]?.[key] ?? en[key] ?? key
 }
 
 export function detectLocale(): Locale {
-  if (typeof navigator === 'undefined') return 'en'
+  if (typeof navigator === 'undefined') return 'ja'
   const l = navigator.language.toLowerCase()
-  if (l.startsWith('bn')) return 'bn'
+  if (l.startsWith('bn')) return 'bn'   // Bangladeshi visitors still get Bangla
   if (l.startsWith('ja')) return 'ja'
-  return 'en'
+  return 'ja'                            // everything else (incl. English browsers) → Japanese
 }
 
 export const SUPPORTED_LOCALES: Array<{ code: Locale; label: string }> = [
-  { code: 'en', label: 'EN' },
-  { code: 'bn', label: 'বাং' },
   { code: 'ja', label: '日本語' },
+  { code: 'en', label: 'EN' },
+  { code: 'bn', label: 'বাং' }
+  ,
 ]

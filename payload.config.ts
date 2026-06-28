@@ -29,6 +29,7 @@ export default buildConfig({
   cors: [
     'http://localhost:3000', // HR site, local dev
     'https://sadiatec-saidatech-qffo.vercel.app',
+    'https://www.sadiatec.com/'
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -43,7 +44,7 @@ export default buildConfig({
   }),
   localization: {
     locales: ['en', 'bn', 'ja'],
-    defaultLocale: 'en',
+    defaultLocale: 'ja',
     fallback: true,
   },
   async onInit(payload) {

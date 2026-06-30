@@ -135,7 +135,7 @@ const en: Dict = {
   'b2b.opt.consultation': 'Request a consultation',
   'b2b.opt.services': 'Ask about services',
   'b2b.opt.contact': 'Leave my contact',
-  'b2b.opt.human': 'Speak to a human',
+  'b2b.opt.human': 'Talk to customer manager',
   'b2b.services':
     'We build multilingual websites, AI assistants and chatbots, lead-generation systems, and business automation for companies working with Japan. Tell us what you need below.',
   'b2b.capture.intro':
@@ -151,8 +151,9 @@ const en: Dict = {
   'opt.svc.automation': 'Business automation',
   'opt.svc.consultation': 'Consultation',
   'opt.svc.other': 'Other',
+  'b2b.handoff': "We've received your details and will reach out soon.",
 
-  'b2b.end': 'Received — thank you. A member of our team will be in touch shortly.',
+  'b2b.end': 'Thank You',
 }
 
 // Bengali — high-traffic strings (long-tail falls back to English).
@@ -217,10 +218,11 @@ const bn: Dict = {
   'b2b.opt.consultation': 'পরামর্শের অনুরোধ',
   'b2b.opt.services': 'সেবা সম্পর্কে জানুন',
   'b2b.opt.contact': 'যোগাযোগ তথ্য রাখুন',
-  'b2b.opt.human': 'একজন মানুষের সাথে কথা বলুন',
+  'b2b.opt.human': 'কাস্টমার ম্যানেজারের সাথে কথা বলুন',
   'q.company': 'কোম্পানির নাম?',
   'q.contactName': 'আপনার নাম?',
-  'b2b.end': 'পেয়েছি — ধন্যবাদ। আমাদের টিমের একজন শীঘ্রই যোগাযোগ করবেন।',
+  'b2b.handoff': 'আমরা আপনার তথ্য পেয়েছি এবং শীঘ্রই যোগাযোগ করব।',
+  'b2b.end': 'ধন্যবাদ',
 
   'opt.ssw': 'SSW (নির্দিষ্ট দক্ষ কর্মী)',
 'opt.titp': 'TITP (টেকনিক্যাল ইন্টার্ন)',
@@ -347,7 +349,7 @@ const ja: Dict = {
   'b2b.opt.consultation': '相談を依頼',
   'b2b.opt.services': 'サービスについて',
   'b2b.opt.contact': '連絡先を残す',
-  'b2b.opt.human': '担当者と話す',
+  'b2b.opt.human': 'カスタマーマネージャーと話す',
   'b2b.services':
     '日本市場向けに、多言語ウェブサイト、AIアシスタント／チャットボット、リード獲得、業務自動化を提供しています。ご要望を下記にご記入ください。',
   'b2b.capture.intro':
@@ -362,7 +364,8 @@ const ja: Dict = {
   'opt.svc.automation': '業務自動化',
   'opt.svc.consultation': '相談',
   'opt.svc.other': 'その他',
-  'b2b.end': '承りました。ありがとうございます。担当者よりまもなくご連絡いたします。',
+  'b2b.handoff': '担当者が確認し、まもなくご連絡します。',
+  'b2b.end': 'ありがとうございます。',
 
   // ── candidate: work (missing labels) ────────────────────────────────────────
 'opt.ssw': 'SSW（特定技能）',

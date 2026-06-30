@@ -3,26 +3,38 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { intakeCreateSchema } from '@/lib/intake/schema'
 import { notifyStaff } from '@/lib/intake/notify'
+import { corsHeaders, withCors } from '@/lib/cors'
+
+export async function OPTIONS(req: Request) {
+  return new Response(null, { status: 204, headers: corsHeaders(req.headers.get('origin')) })
+}
 
 // Called the moment a phone number is captured. Creating the record here — not
 // at the end — is the whole conversion strategy: an abandoned chat still leaves
 // a contactable lead.
 export async function POST(req: Request) {
+  const origin = req.headers.get('origin')
+
   const body = await req.json().catch(() => null)
   const parsed = intakeCreateSchema.safeParse(body)
   if (!parsed.success) {
-    return NextResponse.json({ error: 'invalid', issues: parsed.error.flatten() }, { status: 400 })
+    return withCors(
+      NextResponse.json({ error: 'invalid', issues: parsed.error.flatten() }, { status: 400 }),
+      origin,
+    )
   }
   const { target, data } = parsed.data
 
   // Silently accept-and-drop obvious bots (honeypot filled).
-  if ((data as Record<string, unknown>).honeypot) return NextResponse.json({ ok: true })
+  if ((data as Record<string, unknown>).honeypot) {
+    return withCors(NextResponse.json({ ok: true }), origin)
+  }
   delete (data as Record<string, unknown>).honeypot
 
   const { sessionId, ...record } = data as Record<string, unknown>
   const payload = await getPayload({ config })
 
- let doc
+  let doc
   try {
     if (target === 'lead') {
       doc = await payload.create({
@@ -39,7 +51,7 @@ export async function POST(req: Request) {
     }
   } catch (err) {
     console.error('[intake] create failed', err)
-    return NextResponse.json({ error: 'create_failed' }, { status: 500 })
+    return withCors(NextResponse.json({ error: 'create_failed' }, { status: 500 }), origin)
   }
 
   // Link (or create) the chat session and record the outcome.
@@ -78,7 +90,8 @@ export async function POST(req: Request) {
       record.programInterest ? `Program: ${record.programInterest}` : '',
       record.serviceInterest ? `Service: ${record.serviceInterest}` : '',
     ],
+    whatsapp: false,
   })
 
-  return NextResponse.json({ ok: true, id: doc.id })
+  return withCors(NextResponse.json({ ok: true, id: doc.id }), origin)
 }

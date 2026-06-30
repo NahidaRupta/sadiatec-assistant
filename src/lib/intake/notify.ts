@@ -4,7 +4,7 @@ export interface NotifyInput {
   kind: NotifyKind
   title: string
   lines: string[]
-  whatsapp?: { name?: string; phone?: string; type?: string } // NEW
+  whatsapp?: { name?: string; phone?: string; type?: string; extras?: string } | false
 }
 
 export async function notifyStaff(input: NotifyInput): Promise<void> {
@@ -23,22 +23,25 @@ export async function notifyStaff(input: NotifyInput): Promise<void> {
     }
   }
 
-  await sendStaffWhatsApp(input) // NEW
+  if (input.whatsapp !== false) {
+    await sendStaffWhatsApp(input)
+  }
 
   if (!webhook || process.env.NODE_ENV !== 'production') {
     console.log('[notify]', input.title, '—', input.lines.filter(Boolean).join(' | '))
   }
 }
 
-// NEW
 async function sendStaffWhatsApp(input: NotifyInput): Promise<void> {
   const token = process.env.WHATSAPP_CLOUD_TOKEN
   const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID
   const staffNumber = process.env.STAFF_WHATSAPP_NUMBER
-  if (!token || !phoneNumberId || !staffNumber) return // not configured — skip silently
+  if (!token || !phoneNumberId || !staffNumber) return
+
+  const wa = input.whatsapp || undefined // narrow false→undefined just in case
 
   try {
-    await fetch(`https://graph.facebook.com/v21.0/${phoneNumberId}/messages`, {
+    const res = await fetch(`https://graph.facebook.com/v25.0/${phoneNumberId}/messages`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -46,21 +49,26 @@ async function sendStaffWhatsApp(input: NotifyInput): Promise<void> {
         to: staffNumber,
         type: 'template',
         template: {
-          name: 'new_lead_alert',
-          language: { code: 'en_US' },
+          name: 'new_lead_alert_full',
+          language: { code: 'en' }, // confirm this matches what worked in your curl test
           components: [
             {
               type: 'body',
               parameters: [
-                { type: 'text', text: input.whatsapp?.name ?? '—' },
-                { type: 'text', text: input.whatsapp?.phone ?? '—' },
-                { type: 'text', text: input.whatsapp?.type ?? input.kind },
+                { type: 'text', text: wa?.name ?? '—' },
+                { type: 'text', text: wa?.phone ?? '—' },
+                { type: 'text', text: wa?.type ?? input.kind },
+                { type: 'text', text: wa?.extras ?? 'No additional details provided.' },
               ],
             },
           ],
         },
       }),
     })
+    const json = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      console.error('[notify] whatsapp API error', res.status, JSON.stringify(json))
+    }
   } catch (err) {
     console.error('[notify] whatsapp failed', err)
   }

@@ -50,6 +50,7 @@ export const b2bNodes: Record<NodeId, FlowNode> = {
   'b2b.q.time': { id: 'b2b.q.time', type: 'input', promptKey: 'q.time', field: 'preferredContactTime', inputType: 'select', options: TIME_OPTIONS, optional: true, next: 'b2b.q.notes' },
   'b2b.q.notes': { id: 'b2b.q.notes', type: 'input', promptKey: 'q.notes', field: 'notes', inputType: 'textarea', optional: true, next: 'b2b.capture.do' },
 
-  'b2b.capture.do': { id: 'b2b.capture.do', type: 'capture', target: 'inquiry', next: 'b2b.end' },
+  'b2b.capture.do': { id: 'b2b.capture.do', type: 'capture', target: 'inquiry', next: 'b2b.handoff' },
+  'b2b.handoff': { id: 'b2b.handoff', type: 'handoff', textKey: 'b2b.handoff', next: 'b2b.end' },
   'b2b.end': { id: 'b2b.end', type: 'end', textKey: 'b2b.end' },
 }

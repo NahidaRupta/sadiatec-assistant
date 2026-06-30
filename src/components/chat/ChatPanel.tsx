@@ -8,12 +8,10 @@ import { useFlowEngine } from '@/hooks/useFlowEngine'
 
 interface ChatPanelProps {
   initialLocale: Locale
-  whatsappUrl?: string
-  lineUrl?: string
   onClose: () => void
 }
 
-export function ChatPanel({ initialLocale, whatsappUrl, lineUrl, onClose }: ChatPanelProps) {
+export function ChatPanel({ initialLocale, onClose }: ChatPanelProps) {
   const [locale, setLocale] = useState<Locale>(initialLocale)
   const [text, setText] = useState('')
   const { messages, interaction, typing, done, error, send, restart } = useFlowEngine(locale)

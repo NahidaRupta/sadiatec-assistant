@@ -8,8 +8,6 @@ function readConfigFromScriptTag(): ChatWidgetProps {
   const script = document.currentScript as HTMLScriptElement | null
   return {
     locale: (script?.dataset.locale as ChatWidgetProps['locale']) || undefined,
-    whatsappNumber: script?.dataset.whatsapp || undefined,
-    lineUrl: script?.dataset.line || undefined,
     primaryColor: script?.dataset.color || undefined,
     openDelayMs: script?.dataset.openDelay ? Number(script.dataset.openDelay) : undefined,
   }

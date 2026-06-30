@@ -9,10 +9,6 @@ import { ChatPanel } from './ChatPanel'
 export interface ChatWidgetProps {
   /** Initial language. Falls back to the browser locale, then Japanese. */
   locale?: Locale
-  /** WhatsApp number in international format without "+", e.g. 8801XXXXXXXXX. */
-  whatsappNumber?: string
-  /** Full LINE URL. */
-  lineUrl?: string
   /** Auto-nudge after this many ms (0 disables). */
   openDelayMs?: number
   /** Accent color (hex). */
@@ -21,8 +17,6 @@ export interface ChatWidgetProps {
 
 export function ChatWidget({
   locale,
-  whatsappNumber,
-  lineUrl,
   openDelayMs = 8000,
   primaryColor = '#4f46e5',
 }: ChatWidgetProps) {
@@ -34,7 +28,6 @@ export function ChatWidget({
   const everOpened = useRef(false)
 
   const initialLocale: Locale = locale ?? (typeof window !== 'undefined' ? detectLocale() : 'ja')
-  const whatsappUrl = whatsappNumber ? `https://wa.me/${whatsappNumber}` : undefined
 
   // Mount/animate the panel.
   useEffect(() => {
@@ -87,8 +80,6 @@ export function ChatWidget({
         >
           <ChatPanel
             initialLocale={initialLocale}
-            whatsappUrl={whatsappUrl}
-            lineUrl={lineUrl}
             onClose={() => setOpen(false)}
           />
         </div>

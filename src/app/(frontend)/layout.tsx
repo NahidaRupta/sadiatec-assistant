@@ -26,8 +26,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Chat Widget */}
         <ChatWidget
-          whatsappNumber="8801XXXXXXXXX"
-          lineUrl="https://line.me/R/ti/p/%40xxx"
           openDelayMs={8000}
           primaryColor="#4f46e5"
         />

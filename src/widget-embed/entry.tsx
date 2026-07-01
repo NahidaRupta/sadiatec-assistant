@@ -10,6 +10,7 @@ function readConfigFromScriptTag(): ChatWidgetProps {
     locale: (script?.dataset.locale as ChatWidgetProps['locale']) || undefined,
     primaryColor: script?.dataset.color || undefined,
     openDelayMs: script?.dataset.openDelay ? Number(script.dataset.openDelay) : undefined,
+    staffWhatsappNumber: script?.dataset.staffWhatsapp || undefined, // NEW
   }
 }
 

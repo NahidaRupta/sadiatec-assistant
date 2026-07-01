@@ -42,6 +42,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
 
     const extras =
       [
+        d.companyName && `Company: ${d.companyName}`,
         d.email && `Email: ${d.email}`,
         d.education && `Education: ${d.education}`,
         d.japaneseLevel && `JP level: ${d.japaneseLevel}`,
@@ -58,7 +59,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
       whatsapp: {
         name: (d.name as string) ?? (d.contactName as string),
         phone: d.phone as string,
-        type: (d.inquiryType as string) ?? target,
+       type: (d.inquiryType as string) ?? (d.serviceInterest as string) ?? target,
         extras,
       },
     })

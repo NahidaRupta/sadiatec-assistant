@@ -9,12 +9,19 @@ import { useFlowEngine } from '@/hooks/useFlowEngine'
 interface ChatPanelProps {
   initialLocale: Locale
   onClose: () => void
+  staffWhatsappNumber?: string // NEW
 }
 
-export function ChatPanel({ initialLocale, onClose }: ChatPanelProps) {
+export function ChatPanel({ initialLocale, onClose, staffWhatsappNumber }: ChatPanelProps) {
   const [locale, setLocale] = useState<Locale>(initialLocale)
   const [text, setText] = useState('')
-  const { messages, interaction, typing, done, error, send, restart } = useFlowEngine(locale)
+  const { messages, interaction, typing, done, error, send, restart, collectedData } = useFlowEngine(locale)
+
+  const whatsappUrl = staffWhatsappNumber
+    ? `https://wa.me/${staffWhatsappNumber}?text=${encodeURIComponent(
+        `Hi, I'm ${collectedData.name ?? collectedData.contactName ?? 'a visitor'} — I just filled out the Sadiatec chat form about ${collectedData.inquiryType ?? collectedData.serviceInterest ?? 'your services'}.`
+      )}`
+    : undefined
 
   const scrollRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -32,6 +39,20 @@ export function ChatPanel({ initialLocale, onClose }: ChatPanelProps) {
     setText('')
     void send(v)
   }
+
+  const whatsappButton = whatsappUrl ? (
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-emerald-700"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-1 2.3 5.3 5.3 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c2.3 1 2.3.7 2.7.6a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z" />
+      </svg>
+      {t('ui.contactWhatsApp', locale)}
+    </a >
+  ) : null
 
   return (
     <div className="flex h-[min(80vh,600px)] w-[calc(100vw-2.5rem)] max-w-[400px] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-950 sm:w-[400px]">
@@ -213,6 +234,7 @@ export function ChatPanel({ initialLocale, onClose }: ChatPanelProps) {
         {/* Handoff / completion */}
         {done && (
           <div className="flex flex-col gap-2">
+            {whatsappButton}
             <button
               onClick={restart}
               className="rounded-xl border border-zinc-200 px-4 py-2 text-sm text-zinc-600 transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-900"

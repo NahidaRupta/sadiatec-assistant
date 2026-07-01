@@ -27,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Chat Widget */}
         <ChatWidget
           openDelayMs={8000}
+          staffWhatsappNumber="8801641437154"
           primaryColor="#4f46e5"
         />
       </body>

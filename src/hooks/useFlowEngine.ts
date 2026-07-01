@@ -199,5 +199,6 @@ export function useFlowEngine(locale: Locale) {
     error: state.error,
     send,
     restart: () => reset(locale),
+    collectedData: state.data,
   }
 }

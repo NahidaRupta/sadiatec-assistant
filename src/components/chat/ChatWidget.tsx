@@ -7,18 +7,17 @@ import { cn, track } from '@/lib/utils'
 import { ChatPanel } from './ChatPanel'
 
 export interface ChatWidgetProps {
-  /** Initial language. Falls back to the browser locale, then Japanese. */
   locale?: Locale
-  /** Auto-nudge after this many ms (0 disables). */
   openDelayMs?: number
-  /** Accent color (hex). */
   primaryColor?: string
+  staffWhatsappNumber?: string // NEW
 }
 
 export function ChatWidget({
   locale,
   openDelayMs = 8000,
   primaryColor = '#4f46e5',
+  staffWhatsappNumber,  // NEW
 }: ChatWidgetProps) {
   const [open, setOpen] = useState(false)
   const [render, setRender] = useState(false)
@@ -81,6 +80,7 @@ export function ChatWidget({
           <ChatPanel
             initialLocale={initialLocale}
             onClose={() => setOpen(false)}
+            staffWhatsappNumber={staffWhatsappNumber} // NEW
           />
         </div>
       )}
